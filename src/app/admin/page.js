@@ -223,7 +223,7 @@ export default function AdminPage() {
                         </button>
                       </div>
                     ) : (
-                      <span style={{ color: 'var(--accent-blue)', fontWeight: '700', fontSize: '0.8rem' }}>
+                      <span style={{ color: 'var(--accent-gold)', fontWeight: '700', fontSize: '0.8rem' }}>
                         LOBBY FILLING...
                       </span>
                     )}
@@ -315,10 +315,10 @@ const styles = {
     gap: '2rem'
   },
   balanceCard: {
-    background: 'radial-gradient(ellipse at bottom left, rgba(255, 0, 127, 0.08) 0%, rgba(13, 17, 23, 0.6) 80%)',
-    border: '1px solid rgba(255, 0, 127, 0.25)',
+    background: 'radial-gradient(ellipse at bottom left, rgba(212, 175, 55, 0.08) 0%, rgba(19, 19, 19, 0.6) 80%)',
+    border: '1px solid rgba(212, 175, 55, 0.25)',
     padding: '2.25rem',
-    boxShadow: '0 8px 32px 0 rgba(255, 0, 127, 0.05)'
+    boxShadow: 'var(--gold-glow)'
   },
   balanceHeader: {
     display: 'flex',

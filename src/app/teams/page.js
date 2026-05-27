@@ -122,7 +122,7 @@ export default function TeamsPage() {
               <div style={styles.metricsRow}>
                 <div style={styles.metricBox} className="glass-panel">
                   <span style={styles.metricLabel}>UNION SCORE</span>
-                  <span style={{ ...styles.metricVal, color: 'var(--accent-cyan)' }}>{myTeam.rewardScore}</span>
+                  <span style={{ ...styles.metricVal, color: 'var(--accent-gold)' }}>{myTeam.rewardScore}</span>
                 </div>
                 <div style={styles.metricBox} className="glass-panel">
                   <span style={styles.metricLabel}>ROSTER LIMIT</span>
@@ -237,7 +237,7 @@ export default function TeamsPage() {
                   <div key={idx} style={styles.chatMsg}>
                     <span style={{ 
                       ...styles.chatUser, 
-                      color: msg.username === currentUser?.username ? 'var(--accent-cyan)' : 'var(--accent-blue)' 
+                      color: msg.username === currentUser?.username ? 'var(--accent-gold)' : 'var(--accent-gold)' 
                     }}>
                       @{msg.username}:
                     </span>
@@ -299,7 +299,7 @@ export default function TeamsPage() {
             <div style={styles.recentList}>
               <div style={styles.recentRow}>
                 <div style={styles.recentLeft}>
-                  <span style={{ ...styles.winBadge, color: 'var(--accent-cyan)' }}>WIN</span>
+                  <span style={{ ...styles.winBadge, color: 'var(--accent-gold)', borderColor: 'var(--primary-gold)' }}>WIN</span>
                   <div>
                     <h4 style={styles.recentTitle}>VS Alpha Syndicate</h4>
                     <span style={styles.recentMeta}>FC24 Arena • Pool: 500 Coins</span>
@@ -310,7 +310,7 @@ export default function TeamsPage() {
 
               <div style={styles.recentRow}>
                 <div style={styles.recentLeft}>
-                  <span style={{ ...styles.winBadge, color: 'var(--accent-magenta)' }}>LOSS</span>
+                  <span style={{ ...styles.winBadge, color: '#ff4b4b', borderColor: '#ff4b4b' }}>LOSS</span>
                   <div>
                     <h4 style={styles.recentTitle}>VS Team Liquid (Mock)</h4>
                     <span style={styles.recentMeta}>Warzone Squad • Pool: 1,000 Coins</span>
@@ -431,7 +431,7 @@ const styles = {
   },
   unionAffil: {
     fontSize: '0.8rem',
-    color: 'var(--accent-blue)',
+    color: 'var(--accent-gold)',
     fontWeight: '700',
     textTransform: 'uppercase',
     letterSpacing: '0.05em'

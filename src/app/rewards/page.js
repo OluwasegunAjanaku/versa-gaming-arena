@@ -107,7 +107,7 @@ export default function RewardsPage() {
                   </div>
                   <div style={styles.questAction}>
                     {q.claimed ? (
-                      <span style={{ ...styles.statusTag, color: 'var(--accent-cyan)' }}>CLAIMED</span>
+                      <span style={{ ...styles.statusTag, color: 'var(--accent-gold)' }}>CLAIMED</span>
                     ) : q.completed ? (
                       <button onClick={() => handleClaimClick(q.id)} className="btn btn-primary" style={styles.claimBtn}>
                         Claim 🪙
@@ -131,7 +131,7 @@ export default function RewardsPage() {
                   </div>
                   <div style={styles.questAction}>
                     {q.claimed ? (
-                      <span style={{ ...styles.statusTag, color: 'var(--accent-cyan)' }}>CLAIMED</span>
+                      <span style={{ ...styles.statusTag, color: 'var(--accent-gold)' }}>CLAIMED</span>
                     ) : q.completed ? (
                       <button onClick={() => handleClaimClick(q.id)} className="btn btn-primary" style={styles.claimBtn}>
                         Claim 🪙
@@ -193,8 +193,8 @@ export default function RewardsPage() {
                   key={b.id} 
                   style={{ 
                     ...styles.badgeCard, 
-                    borderColor: b.unlocked ? 'var(--accent-cyan)' : 'rgba(255, 255, 255, 0.05)',
-                    background: b.unlocked ? 'rgba(0, 240, 255, 0.04)' : 'rgba(0, 0, 0, 0.2)',
+                    borderColor: b.unlocked ? 'var(--primary-gold)' : 'rgba(255, 255, 255, 0.05)',
+                    background: b.unlocked ? 'rgba(212, 175, 55, 0.06)' : 'rgba(0, 0, 0, 0.2)',
                     opacity: b.unlocked ? 1 : 0.45
                   }}
                   className="badge-card-hover"
@@ -204,7 +204,7 @@ export default function RewardsPage() {
                   <p style={styles.badgeDesc}>{b.desc}</p>
                   <span style={{ 
                     ...styles.badgeStatus, 
-                    color: b.unlocked ? 'var(--accent-cyan)' : '#718096' 
+                    color: b.unlocked ? 'var(--accent-gold)' : '#718096' 
                   }}>
                     {b.unlocked ? '🏆 UNLOCKED' : '🔒 LOCKED'}
                   </span>

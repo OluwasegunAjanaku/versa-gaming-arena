@@ -17,7 +17,7 @@ export default function AuthPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Redirect if already authenticated
+  // Redirect if already authenticated (take directly to lobby, but scanning on initial entry is handled)
   useEffect(() => {
     if (currentUser) {
       router.push('/');
@@ -53,7 +53,7 @@ export default function AuthPage() {
       } else {
         await signIn(email, password);
       }
-      router.push('/');
+      router.push('/vacs');
     } catch (err) {
       setErrorMsg(err.message || 'An error occurred during authentication.');
     } finally {
@@ -65,7 +65,7 @@ export default function AuthPage() {
     setLoading(true);
     try {
       await loginWithOAuth(provider);
-      router.push('/');
+      router.push('/vacs');
     } catch (err) {
       setErrorMsg(`Failed to connect with ${provider}.`);
     } finally {
@@ -89,12 +89,12 @@ export default function AuthPage() {
         <div style={styles.bannerOverlay}>
           <div style={styles.overlayTextContainer} className="glass-card">
             <h1 style={styles.brandTitle}>
-              VER<span style={{ color: 'var(--accent-cyan)' }}>SA</span>
+              VER<span style={{ color: 'var(--primary-gold)' }}>SA</span>
             </h1>
             <p style={styles.slogan}>Where Gamers Compete & Earn</p>
             <div style={styles.accentBar}></div>
             <p style={styles.brandPitch}>
-              Enter the next generation of competitive gaming. Secure wagers, claim team bounties, and climb the Leaderboards. Back your gameplay with real coin power.
+              Enter the next generation of competitive gaming. Secure wagers, claim team bounties, and climb the Leaderboards. Back your gameplay with real coin power under VACS security protocols.
             </p>
           </div>
         </div>
@@ -304,14 +304,14 @@ const styles = {
   slogan: {
     fontSize: '1.25rem',
     fontWeight: '700',
-    color: 'var(--accent-blue)',
-    textShadow: 'var(--blue-glow)',
+    color: 'var(--primary-gold)',
+    textShadow: 'var(--gold-glow)',
     marginBottom: '1rem'
   },
   accentBar: {
     width: '60px',
     height: '4px',
-    background: 'var(--neon-gradient)',
+    background: 'var(--gold-gradient)',
     marginBottom: '1.5rem',
     borderRadius: '2px'
   },
@@ -389,7 +389,7 @@ const styles = {
   toggleBtn: {
     background: 'none',
     border: 'none',
-    color: 'var(--accent-cyan)',
+    color: 'var(--primary-gold)',
     fontWeight: '700',
     cursor: 'pointer',
     padding: 0

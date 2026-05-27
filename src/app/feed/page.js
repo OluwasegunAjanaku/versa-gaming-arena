@@ -183,7 +183,7 @@ export default function FeedPage() {
                       onClick={() => likeFeedPost(post.id)}
                       style={{ 
                         ...styles.actionBtn, 
-                        color: isLiked ? 'var(--accent-magenta)' : '#718096' 
+                        color: isLiked ? '#ff4b4b' : '#718096' 
                       }}
                     >
                       ❤️ <span style={styles.actionCount}>{post.likes} Likes</span>
@@ -397,7 +397,7 @@ const styles = {
   },
   tagItem: {
     fontSize: '0.8rem',
-    color: 'var(--accent-cyan)',
+    color: 'var(--accent-gold)',
     fontWeight: '700'
   },
   postActions: {
@@ -447,7 +447,7 @@ const styles = {
   },
   commentUser: {
     fontWeight: '800',
-    color: 'var(--accent-blue)',
+    color: 'var(--accent-gold)',
     marginRight: '0.4rem'
   },
   commentText: {

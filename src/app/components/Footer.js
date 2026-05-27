@@ -13,12 +13,12 @@ export default function Footer() {
         <div style={styles.infoCol}>
           <Link href="/" style={styles.logoLink}>
             <span style={styles.logoText}>
-              VER<span style={{ color: 'var(--accent-cyan)', textShadow: 'var(--cyan-glow)' }}>SA</span>
+              VER<span style={{ color: 'var(--accent-gold)', textShadow: 'var(--gold-glow)' }}>SA</span>
             </span>
           </Link>
           <p style={styles.slogan}>Where Gamers Compete & Earn</p>
           <p style={styles.desc}>
-            The ultimate decentralized arena for esports wagers, tournaments, and guilds. Elevate your play, back your skills, and earn rewards instantly.
+            The ultimate premium arena for competitive wagers, tournaments, and guilds. Elevate your play, back your gaming skills, and earn rewards instantly under VACS anti-cheat protocols.
           </p>
         </div>
 
@@ -27,9 +27,9 @@ export default function Footer() {
           <h4 style={styles.colTitle}>Sitemap</h4>
           <ul style={styles.linksList}>
             <li><Link href="/matches" style={styles.link}>Wager Arena</Link></li>
+            <li><Link href="/tournaments" style={styles.link}>Tournaments</Link></li>
             <li><Link href="/teams" style={styles.link}>Unions & Guilds</Link></li>
             <li><Link href="/rewards" style={styles.link}>Quest Center</Link></li>
-            <li><Link href="/live" style={styles.link}>Watch Party</Link></li>
           </ul>
         </div>
 
@@ -37,7 +37,7 @@ export default function Footer() {
         <div style={styles.linksCol}>
           <h4 style={styles.colTitle}>Support</h4>
           <ul style={styles.linksList}>
-            <li><Link href="/auth" style={styles.link}>Auth Deck</Link></li>
+            <li><Link href="/membership" style={styles.link}>VERSA Pass</Link></li>
             <li><a href="#privacy" style={styles.link}>Privacy Policy</a></li>
             <li><a href="#terms" style={styles.link}>Terms of Service</a></li>
             <li><a href="#support" style={styles.link}>Contact Us</a></li>
@@ -48,10 +48,10 @@ export default function Footer() {
         <div style={styles.linksCol}>
           <h4 style={styles.colTitle}>Community</h4>
           <div style={styles.socialIcons}>
-            <a href="#discord" style={styles.socialBtn} aria-label="Discord">👾 Discord</a>
-            <a href="#twitter" style={styles.socialBtn} aria-label="Twitter">🐦 Twitter</a>
-            <a href="#twitch" style={styles.socialBtn} aria-label="Twitch">🎮 Twitch</a>
-            <a href="#youtube" style={styles.socialBtn} aria-label="YouTube">📺 YouTube</a>
+            <a href="#discord" style={styles.socialBtn} aria-label="Discord">👾 Discord Arena</a>
+            <a href="#twitter" style={styles.socialBtn} aria-label="Twitter">🐦 Twitter Feed</a>
+            <a href="#twitch" style={styles.socialBtn} aria-label="Twitch">🎮 Twitch Live</a>
+            <a href="#youtube" style={styles.socialBtn} aria-label="YouTube">📺 YouTube Clips</a>
           </div>
         </div>
       </div>
@@ -60,20 +60,20 @@ export default function Footer() {
       <div style={styles.bottomBar}>
         <div className="container" style={styles.bottomContainer}>
           <p style={styles.copyright}>
-            © {currentYear} VERSA Esports Technologies Inc. Inspired by PlayStation. All mock features are fully simulated for testing.
+            © {currentYear} VERSA Esports Technologies Inc. Aurelian Elite Black & Gold Theme. All mock features are fully simulated for testing.
           </p>
           <div style={styles.badgeRow}>
-            <span style={{ ...styles.badge, color: 'var(--accent-blue)', borderColor: 'var(--accent-blue)' }}>WAGER TEST</span>
-            <span style={{ ...styles.badge, color: 'var(--accent-cyan)', borderColor: 'var(--accent-cyan)' }}>SSL SECURE</span>
-            <span style={{ ...styles.badge, color: 'var(--accent-magenta)', borderColor: 'var(--accent-magenta)' }}>STRIPE SIM</span>
+            <span style={{ ...styles.badge, color: 'var(--accent-gold)', borderColor: 'var(--primary-gold)' }}>WAGER TEST</span>
+            <span style={{ ...styles.badge, color: 'var(--neon-amber)', borderColor: 'var(--neon-amber)' }}>VACS PROT</span>
+            <span style={{ ...styles.badge, color: 'var(--accent-gold)', borderColor: 'var(--primary-gold)' }}>STRIPE SIM</span>
           </div>
         </div>
       </div>
 
       <style jsx global>{`
         .glass-footer {
-          background: rgba(8, 10, 14, 0.95);
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          background: rgba(14, 14, 14, 0.98);
+          border-top: 1px solid rgba(212, 175, 55, 0.15);
           padding-top: 3rem;
           margin-top: auto;
         }
@@ -115,12 +115,12 @@ const styles = {
   slogan: {
     fontSize: '1.05rem',
     fontWeight: '700',
-    color: 'var(--accent-cyan)',
-    textShadow: 'var(--cyan-glow)'
+    color: 'var(--accent-gold)',
+    textShadow: 'var(--gold-glow)'
   },
   desc: {
     fontSize: '0.9rem',
-    color: '#a0aec0',
+    color: '#cbd5e0',
     lineHeight: '1.6',
     maxWidth: '380px'
   },
@@ -144,7 +144,7 @@ const styles = {
   },
   link: {
     fontSize: '0.9rem',
-    color: '#a0aec0',
+    color: '#cbd5e0',
     transition: 'var(--transition-snappy)'
   },
   socialIcons: {
@@ -154,16 +154,16 @@ const styles = {
   },
   socialBtn: {
     fontSize: '0.9rem',
-    color: '#a0aec0',
+    color: '#cbd5e0',
     display: 'inline-flex',
     alignItems: 'center',
     gap: '0.5rem',
     transition: 'var(--transition-snappy)'
   },
   bottomBar: {
-    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+    borderTop: '1px solid rgba(212, 175, 55, 0.15)',
     padding: '1.5rem 0',
-    background: '#07090c'
+    background: '#0a0a0a'
   },
   bottomContainer: {
     display: 'flex',
@@ -174,7 +174,7 @@ const styles = {
   },
   copyright: {
     fontSize: '0.8rem',
-    color: '#718096',
+    color: '#cbd5e0',
     lineHeight: '1.5'
   },
   badgeRow: {

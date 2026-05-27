@@ -98,7 +98,7 @@ export default function ProfilePage() {
                   <h2 style={styles.gamerName}>@{currentUser.username}</h2>
                   <span style={{ 
                     ...styles.unionBadge, 
-                    color: currentUser.union ? 'var(--accent-cyan)' : '#718096' 
+                    color: currentUser.union ? 'var(--accent-gold)' : '#718096' 
                   }}>
                     🛡️ {currentUser.union || 'NO UNION AFFILIATION'}
                   </span>
@@ -110,7 +110,7 @@ export default function ProfilePage() {
               <div style={styles.gamerMetaRow}>
                 <div style={styles.metaItem}>
                   <span style={styles.metaLabel}>VERSA TIER</span>
-                  <span style={styles.metaVal} className="text-gradient-blue">Bronze Competitor</span>
+                  <span style={styles.metaVal} className="text-gradient-gold">Bronze Competitor</span>
                 </div>
                 <div style={styles.metaItem}>
                   <span style={styles.metaLabel}>BADGES SECURED</span>
@@ -288,14 +288,14 @@ export default function ProfilePage() {
                 <div style={styles.statBox} className="glass-card">
                   <span style={styles.statIcon}>🏆</span>
                   <h4 style={styles.statLabel}>WINS RECORDED</h4>
-                  <span style={{ ...styles.statVal, color: 'var(--accent-cyan)' }}>{wins} Wins</span>
+                  <span style={{ ...styles.statVal, color: 'var(--accent-gold)' }}>{wins} Wins</span>
                 </div>
 
                 {/* Losses */}
                 <div style={styles.statBox} className="glass-card">
                   <span style={styles.statIcon}>💀</span>
                   <h4 style={styles.statLabel}>LOSSES RECORDED</h4>
-                  <span style={{ ...styles.statVal, color: 'var(--accent-magenta)' }}>{losses} Losses</span>
+                  <span style={{ ...styles.statVal, color: '#ff4b4b' }}>{losses} Losses</span>
                 </div>
 
                 {/* W/L Ratio */}
@@ -317,7 +317,7 @@ export default function ProfilePage() {
               <div style={styles.analysisRow}>
                 <div style={styles.analysisHeader}>
                   <span>Competitor win rate efficiency</span>
-                  <span style={{ color: 'var(--accent-cyan)', fontWeight: '800' }}>{winRate}%</span>
+                  <span style={{ color: 'var(--accent-gold)', fontWeight: '800' }}>{winRate}%</span>
                 </div>
                 <div style={styles.analysisBar}>
                   <div style={{ ...styles.analysisFill, width: `${winRate}%` }}></div>
@@ -629,8 +629,8 @@ const styles = {
   },
   analysisFill: {
     height: '100%',
-    background: 'var(--neon-gradient)',
+    background: 'var(--gold-gradient)',
     borderRadius: '3px',
-    boxShadow: 'var(--cyan-glow)'
+    boxShadow: 'var(--gold-glow)'
   }
 };

@@ -12,10 +12,12 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/matches', label: 'Arena' },
+    { href: '/tournaments', label: 'Tournaments' },
     { href: '/teams', label: 'Unions' },
     { href: '/rewards', label: 'Quests' },
     { href: '/feed', label: 'Feed' },
-    { href: '/live', label: 'Streams' }
+    { href: '/live', label: 'Streams' },
+    { href: '/membership', label: 'VERSA Pass' }
   ];
 
   const isActive = (path) => pathname === path;
@@ -26,7 +28,7 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link href="/" style={styles.logoLink}>
           <span style={styles.logoText}>
-            VER<span style={{ color: 'var(--accent-cyan)', textShadow: 'var(--cyan-glow)' }}>SA</span>
+            VER<span style={{ color: 'var(--accent-gold)', textShadow: 'var(--gold-glow)' }}>SA</span>
           </span>
         </Link>
 
@@ -50,9 +52,9 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               style={{ 
                 ...styles.link, 
-                color: isActive(link.href) ? 'var(--accent-cyan)' : 'var(--foreground)',
-                borderBottom: isActive(link.href) ? '2px solid var(--accent-cyan)' : '2px solid transparent',
-                textShadow: isActive(link.href) ? 'var(--cyan-glow)' : 'none'
+                color: isActive(link.href) ? 'var(--accent-gold)' : 'var(--foreground)',
+                borderBottom: isActive(link.href) ? '2px solid var(--accent-gold)' : '2px solid transparent',
+                textShadow: isActive(link.href) ? 'var(--gold-glow)' : 'none'
               }}
             >
               {link.label}
@@ -66,8 +68,8 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 style={{ 
                   ...styles.link, 
-                  color: isActive('/profile') ? 'var(--accent-cyan)' : 'var(--foreground)',
-                  borderBottom: isActive('/profile') ? '2px solid var(--accent-cyan)' : '2px solid transparent'
+                  color: isActive('/profile') ? 'var(--accent-gold)' : 'var(--foreground)',
+                  borderBottom: isActive('/profile') ? '2px solid var(--accent-gold)' : '2px solid transparent'
                 }}
               >
                 Profile
@@ -77,9 +79,9 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 style={{ 
                   ...styles.link, 
-                  color: isActive('/admin') ? 'var(--accent-magenta)' : 'var(--foreground)',
-                  borderBottom: isActive('/admin') ? '2px solid var(--accent-magenta)' : '2px solid transparent',
-                  textShadow: isActive('/admin') ? 'var(--pink-glow)' : 'none'
+                  color: isActive('/admin') ? 'var(--neon-amber)' : 'var(--foreground)',
+                  borderBottom: isActive('/admin') ? '2px solid var(--neon-amber)' : '2px solid transparent',
+                  textShadow: isActive('/admin') ? 'var(--amber-glow)' : 'none'
                 }}
               >
                 Admin
@@ -99,6 +101,9 @@ export default function Navbar() {
               <Link href="/profile" style={styles.profileBadge}>
                 <span style={styles.avatar}>{currentUser.avatar || '🎮'}</span>
                 <span style={styles.username}>{currentUser.username}</span>
+                {currentUser.isMember && (
+                  <span style={styles.badgePro} title="Elite Pro Member">PRO</span>
+                )}
               </Link>
               <button onClick={signOut} className="btn btn-secondary" style={styles.signOutBtn}>
                 Exit
@@ -114,25 +119,25 @@ export default function Navbar() {
 
       <style jsx global>{`
         .glass-nav {
-          background: rgba(13, 17, 23, 0.75);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(14, 14, 14, 0.75);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-bottom: 1px solid rgba(212, 175, 55, 0.15);
           position: sticky;
           top: 0;
           z-index: 1000;
           transition: var(--transition-smooth);
         }
         
-        @media (max-width: 960px) {
+        @media (max-width: 1080px) {
           .nav-links-box {
             position: absolute !important;
             top: 70px;
             left: 0;
             right: 0;
-            background: rgba(10, 12, 16, 0.95) !important;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 10, 10, 0.98) !important;
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             flex-direction: column !important;
             padding: 1.5rem !important;
             gap: 1.5rem !important;
@@ -169,12 +174,12 @@ const styles = {
   },
   linksContainer: {
     display: 'flex',
-    gap: '2rem',
+    gap: '1.5rem',
     alignItems: 'center'
   },
   link: {
-    fontSize: '0.95rem',
-    fontWeight: '600',
+    fontSize: '0.85rem',
+    fontWeight: '700',
     letterSpacing: '0.05em',
     padding: '0.25rem 0',
     textTransform: 'uppercase',
@@ -187,57 +192,66 @@ const styles = {
   userBox: {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem'
+    gap: '0.75rem'
   },
   coinBadge: {
     display: 'flex',
     alignItems: 'center',
     gap: '0.4rem',
-    background: 'rgba(255, 215, 0, 0.1)',
-    border: '1px solid rgba(255, 215, 0, 0.3)',
-    borderRadius: '20px',
-    padding: '0.4rem 0.8rem',
-    fontSize: '0.9rem',
+    background: 'rgba(212, 175, 55, 0.08)',
+    border: '1px solid rgba(212, 175, 55, 0.3)',
+    borderRadius: '4px',
+    padding: '0.4rem 0.65rem',
+    fontSize: '0.85rem',
     fontWeight: '700',
-    color: '#ffd700',
-    boxShadow: '0 0 10px rgba(255, 215, 0, 0.1)',
+    color: 'var(--accent-gold)',
+    boxShadow: 'var(--gold-glow)',
     transition: 'var(--transition-snappy)'
   },
   coinIcon: {
-    fontSize: '1rem'
+    fontSize: '0.9rem'
   },
   coinText: {
-    fontVariantNumeric: 'tabular-nums'
+    fontVariantNumeric: 'tabular-nums',
+    fontFamily: 'var(--font-mono)'
   },
   profileBadge: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
-    background: 'rgba(255, 255, 255, 0.05)',
-    border: '1px solid rgba(255, 255, 255, 0.08)',
-    borderRadius: '20px',
-    padding: '0.4rem 0.8rem',
-    fontSize: '0.9rem',
+    gap: '0.4rem',
+    background: 'rgba(255, 255, 255, 0.02)',
+    border: '1px solid rgba(255, 255, 255, 0.05)',
+    borderRadius: '4px',
+    padding: '0.4rem 0.65rem',
+    fontSize: '0.85rem',
     fontWeight: '600'
   },
   avatar: {
-    fontSize: '1rem'
+    fontSize: '0.9rem'
   },
   username: {
-    maxWidth: '120px',
+    maxWidth: '90px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap'
   },
+  badgePro: {
+    fontSize: '0.6rem',
+    fontWeight: 'bold',
+    color: '#050505',
+    background: 'var(--gold-gradient)',
+    padding: '0.1rem 0.3rem',
+    borderRadius: '2px'
+  },
   signOutBtn: {
-    padding: '0.4rem 1rem',
-    fontSize: '0.8rem',
-    borderRadius: '20px'
+    padding: '0.4rem 0.75rem',
+    fontSize: '0.75rem',
+    borderRadius: '4px'
   },
   signInBtn: {
     padding: '0.5rem 1.25rem',
     fontSize: '0.85rem',
-    borderRadius: '25px'
+    borderRadius: '4px'
   },
   hamburger: {
     display: 'none',

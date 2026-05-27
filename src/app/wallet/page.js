@@ -106,9 +106,8 @@ export default function WalletPage() {
             </div>
           </div>
 
-          {/* Test Suite Deposit card */}
           <div className="glass-card" style={styles.card}>
-            <h3 style={{ ...styles.cardTitle, color: 'var(--accent-cyan)' }}>🛠️ TEST SUITE: DEPOSIT SIMULATOR</h3>
+            <h3 style={{ ...styles.cardTitle, color: 'var(--accent-gold)' }}>🛠️ TEST SUITE: DEPOSIT SIMULATOR</h3>
             <p style={styles.cardDesc}>Need test coins to create wagers or test payouts? Credit your mock bank balance instantly below:</p>
             
             <div style={styles.depositRow}>
@@ -221,7 +220,7 @@ export default function WalletPage() {
                           ...styles.td, 
                           textAlign: 'right', 
                           fontWeight: '800',
-                          color: tx.amount > 0 ? 'var(--accent-cyan)' : 'var(--accent-magenta)' 
+                          color: tx.amount > 0 ? 'var(--accent-gold)' : '#ff4b4b' 
                         }}>
                           {tx.amount > 0 ? '+' : ''}{tx.amount.toLocaleString()}
                         </td>
@@ -372,7 +371,7 @@ const styles = {
   },
   calcText: {
     fontSize: '0.8rem',
-    color: 'var(--accent-cyan)',
+    color: 'var(--accent-gold)',
     fontWeight: '700'
   },
   submitBtn: {
@@ -408,7 +407,7 @@ const styles = {
   },
   earnMoreBtn: {
     fontSize: '0.85rem',
-    color: 'var(--accent-cyan)',
+    color: 'var(--accent-gold)',
     fontWeight: '700'
   },
   tableWrapper: {

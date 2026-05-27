@@ -242,6 +242,37 @@ export function FirebaseProvider({ children }) {
     localStorage.removeItem('versa_auth');
   };
 
+  const subscribeMembership = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (!currentUser) return reject(new Error('Please sign in first.'));
+        
+        const updatedUsers = allUsers.map(u => {
+          if (u.id === currentUser.id) {
+            return { ...u, isMember: true };
+          }
+          return u;
+        });
+        syncUsersAndCurrent(updatedUsers);
+
+        // Add Transaction
+        const newTx = {
+          id: 'tx_' + Math.random().toString(36).substr(2, 9),
+          userId: currentUser.id,
+          username: currentUser.username,
+          type: 'Stripe Purchase: VERSA Elite Pro Monthly Membership Upgrade',
+          amount: -999, // Simulated cents or currency
+          isMembershipPayment: true,
+          date: new Date().toISOString().split('T')[0]
+        };
+        const updatedTxs = [newTx, ...transactions];
+        syncStorage('versa_transactions', updatedTxs, setTransactions);
+
+        resolve();
+      }, 800);
+    });
+  };
+
   // PROFILE ACTIONS
   const updateProfile = (username, avatar, psn, steam, xbox, github) => {
     if (!currentUser) return;
@@ -321,7 +352,7 @@ export function FirebaseProvider({ children }) {
   };
 
   // MATCH ARENA ACTIONS
-  const createMatch = (title, gameId, wager, playersMax) => {
+  const createMatch = (title, gameId, wager, playersMax, isPublic = true) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (!currentUser) return reject(new Error('Please sign in first.'));
@@ -338,6 +369,7 @@ export function FirebaseProvider({ children }) {
           hostName: currentUser.username,
           playersMax: parseInt(playersMax),
           playersJoined: [currentUser.id],
+          isPublic: !!isPublic,
           status: 'open',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           date: 'Today'
@@ -687,6 +719,7 @@ export function FirebaseProvider({ children }) {
       signIn,
       signOut,
       loginWithOAuth,
+      subscribeMembership,
       updateProfile,
       addCoins,
       withdrawToBank,
