@@ -5,7 +5,7 @@ import { useFirebase } from '../lib/firebase';
 import Link from 'next/link';
 
 export default function TournamentsPage() {
-  const { currentUser } = useFirebase();
+  const { currentUser, isLoading } = useFirebase();
 
   const [registeredList, setRegisteredList] = useState([]);
   const [selectedTournament, setSelectedTournament] = useState(null);
@@ -76,6 +76,17 @@ export default function TournamentsPage() {
   };
 
   const isMember = currentUser?.isMember;
+
+  if (isLoading) {
+    return (
+      <div style={styles.lockoutPage}>
+        <div style={{ ...styles.lockoutCard, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px' }} className="glass-panel">
+          <span style={{ fontSize: '2.5rem', display: 'inline-block', animation: 'sweep 2s linear infinite' }}>⚙️</span>
+          <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--accent-gold)', letterSpacing: '0.1em', fontFamily: 'var(--font-mono)' }}>RETRIEVING COMPETITOR DOSSIER...</p>
+        </div>
+      </div>
+    );
+  }
 
   // 1. Lockout if not a paid member
   if (!currentUser) {

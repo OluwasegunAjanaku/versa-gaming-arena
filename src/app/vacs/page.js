@@ -17,7 +17,7 @@ const VACS_LOGS = [
 ];
 
 export default function VacsScanPage() {
-  const { currentUser } = useFirebase();
+  const { currentUser, isLoading } = useFirebase();
   const router = useRouter();
 
   const [progress, setProgress] = useState(0);
@@ -28,6 +28,8 @@ export default function VacsScanPage() {
 
   // Load progress
   useEffect(() => {
+    if (isLoading) return;
+
     // If not logged in, redirect back to auth
     if (!currentUser) {
       router.push('/auth');
@@ -70,7 +72,7 @@ export default function VacsScanPage() {
     }
 
     return () => clearInterval(interval);
-  }, [progress, hasFailed, forceFail, currentUser, router]);
+  }, [progress, hasFailed, forceFail, currentUser, isLoading, router]);
 
   const handleRetry = () => {
     setHasFailed(false);
@@ -88,7 +90,17 @@ export default function VacsScanPage() {
     }
   };
 
-  if (!currentUser) return null;
+  if (isLoading || !currentUser) {
+    return (
+      <div style={styles.pageContainer}>
+        <div style={styles.ambientGlow}></div>
+        <div className="glass-panel" style={{ ...styles.scanCard, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px' }}>
+          <span style={{ fontSize: '2.5rem', display: 'inline-block', animation: 'sweep 2s linear infinite' }}>⚙️</span>
+          <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--accent-gold)', letterSpacing: '0.1em', fontFamily: 'var(--font-mono)' }}>LOADING SECURE ENVIRONMENT...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.pageContainer}>

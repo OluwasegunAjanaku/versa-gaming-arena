@@ -5,7 +5,7 @@ import { useFirebase } from '../lib/firebase';
 import Link from 'next/link';
 
 export default function MembershipPage() {
-  const { currentUser, subscribeMembership } = useFirebase();
+  const { currentUser, subscribeMembership, isLoading } = useFirebase();
   const [loading, setLoading] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
@@ -46,6 +46,24 @@ export default function MembershipPage() {
       setLoading(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div style={styles.pageContainer}>
+        <div style={styles.heroGlow}></div>
+        <div style={{ ...styles.content, width: '100%' }} className="container">
+          <div style={styles.header}>
+            <span className="neon-tag neon-tag-blue">VERSA Pass</span>
+            <h1 style={styles.title}>ACCESS TIER DETAILS</h1>
+            <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', width: '100%', maxWidth: '460px', margin: '2rem auto' }}>
+              <span style={{ fontSize: '2.5rem', display: 'inline-block', animation: 'sweep 2s linear infinite' }}>⚙️</span>
+              <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--accent-gold)', letterSpacing: '0.1em', fontFamily: 'var(--font-mono)' }}>CONNECTING TO STRIPE GATEWAY...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const plans = [
     {

@@ -6,7 +6,7 @@ import { useFirebase } from '../lib/firebase';
 import Image from 'next/image';
 
 export default function AuthPage() {
-  const { currentUser, signIn, signUp, loginWithOAuth } = useFirebase();
+  const { currentUser, signIn, signUp, loginWithOAuth, isLoading } = useFirebase();
   const router = useRouter();
   
   const [isSignUp, setIsSignUp] = useState(false);
@@ -17,12 +17,15 @@ export default function AuthPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const justLoggedIn = React.useRef(false);
+
   // Redirect if already authenticated (take directly to lobby, but scanning on initial entry is handled)
   useEffect(() => {
-    if (currentUser) {
+    if (isLoading) return;
+    if (currentUser && !justLoggedIn.current) {
       router.push('/');
     }
-  }, [currentUser, router]);
+  }, [currentUser, isLoading, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +49,7 @@ export default function AuthPage() {
       return;
     }
 
+    justLoggedIn.current = true;
     setLoading(true);
     try {
       if (isSignUp) {
@@ -55,6 +59,7 @@ export default function AuthPage() {
       }
       router.push('/vacs');
     } catch (err) {
+      justLoggedIn.current = false;
       setErrorMsg(err.message || 'An error occurred during authentication.');
     } finally {
       setLoading(false);
@@ -62,11 +67,13 @@ export default function AuthPage() {
   };
 
   const handleOAuthClick = async (provider) => {
+    justLoggedIn.current = true;
     setLoading(true);
     try {
       await loginWithOAuth(provider);
       router.push('/vacs');
     } catch (err) {
+      justLoggedIn.current = false;
       setErrorMsg(`Failed to connect with ${provider}.`);
     } finally {
       setLoading(false);

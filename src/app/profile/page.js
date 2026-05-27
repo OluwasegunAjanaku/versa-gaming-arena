@@ -5,7 +5,7 @@ import { useFirebase } from '../lib/firebase';
 import Link from 'next/link';
 
 export default function ProfilePage() {
-  const { currentUser, updateProfile, quests } = useFirebase();
+  const { currentUser, updateProfile, quests, isLoading } = useFirebase();
 
   // Edit Profile States
   const [username, setUsername] = useState(currentUser?.username || '');
@@ -19,6 +19,22 @@ export default function ProfilePage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+
+
+  if (isLoading) {
+    return (
+      <div className="container" style={styles.profileContainer}>
+        <div style={styles.header}>
+          <span className="neon-tag neon-tag-blue">👤 Gamer ID</span>
+          <h1 style={styles.title}>PLAYER PROFILE CONSOLE</h1>
+        </div>
+        <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '350px', width: '100%', maxWidth: '460px', margin: '4rem auto' }}>
+          <span style={{ fontSize: '2.5rem', display: 'inline-block', animation: 'sweep 2s linear infinite' }}>⚙️</span>
+          <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--accent-gold)', letterSpacing: '0.1em', fontFamily: 'var(--font-mono)' }}>RETRIEVING PLAYER RECORD...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
@@ -72,7 +88,7 @@ export default function ProfilePage() {
   const badgesCount = (wins >= 1 ? 1 : 0) + (wins >= 5 ? 1 : 0) + ((currentUser?.streak >= 3) ? 1 : 0) + (currentUser?.union ? 1 : 0) + (quests.find(q => q.id === 'q4')?.completed ? 1 : 0);
 
   return (
-    <div className="container" style={styles.profileContainer}>
+    <div className="container" style={styles.profileContainer} key={currentUser?.id || 'guest'}>
       {/* Page Header */}
       <div style={styles.header}>
         <span className="neon-tag neon-tag-blue">👤 Gamer ID</span>
